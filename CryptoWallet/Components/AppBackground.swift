@@ -1,33 +1,43 @@
 import SwiftUI
 
-struct AppBackground: View {
+struct AppBackground<Content: View>: View {
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
+    }
+
     var body: some View {
         ZStack {
-            Color(red: 0.05, green: 0.04, blue: 0.09)
-                .ignoresSafeArea()
+            Color(red: 31 / 255, green: 31 / 255, blue: 31 / 255)
 
-            RadialGradient(
-                colors: [
-                    Color(red: 0.28, green: 0.18, blue: 0.52).opacity(0.75),
-                    Color.clear
-                ],
-                center: UnitPoint(x: 0.0, y: 0.0),
-                startRadius: 0,
-                endRadius: 380
-            )
-            .ignoresSafeArea()
+            Ellipse()
+                .fill(
+                    Color(red: 99 / 255, green: 57 / 255, blue: 249 / 255)
+                        .opacity(0.25)
+                )
+                .frame(width: 300, height: 400)
+                .blur(radius: 120)
+                .offset(x: 140, y: -200)
 
-            RadialGradient(
-                colors: [
-                    Color(red: 0.28, green: 0.18, blue: 0.52).opacity(0.65),
-                    Color.clear
-                ],
-                center: UnitPoint(x: 1.0, y: 1.0),
-                startRadius: 0,
-                endRadius: 380
-            )
-            .ignoresSafeArea()
+            Ellipse()
+                .fill(
+                    Color(red: 99 / 255, green: 57 / 255, blue: 249 / 255)
+                        .opacity(0.25)
+                )
+                .frame(width: 350, height: 450)
+                .blur(radius: 140)
+                .offset(x: -160, y: 250)
+
+            content
         }
+        .ignoresSafeArea()
+    }
+}
+
+extension AppBackground where Content == EmptyView {
+    init() {
+        self.init { EmptyView() }
     }
 }
 
