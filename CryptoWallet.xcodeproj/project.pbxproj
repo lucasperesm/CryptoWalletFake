@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		33A3AC362FD643A5004BF0AF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33A3AC332FD643A5004BF0AF /* Model.xcdatamodeld */; };
+		33A3AC5E2FD65109004BF0AF /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3AC5D2FD65109004BF0AF /* RegisterViewModel.swift */; };
+		33A3AC5F2FD65109004BF0AF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3AC5C2FD65109004BF0AF /* LoginViewModel.swift */; };
 		592E1BB72FCD1F45003FB46C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 592E1BB42FCD1F45003FB46C /* Assets.xcassets */; };
 		592E1BB82FCD1F45003FB46C /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BAC2FCD1F45003FB46C /* Coin.swift */; };
 		592E1BB92FCD1F45003FB46C /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */; };
@@ -31,6 +34,9 @@
 
 /* Begin PBXFileReference section */
 		2EC4B4212FC6FCD7005064D0 /* CryptoWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		33A3AC342FD643A5004BF0AF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		33A3AC5C2FD65109004BF0AF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		33A3AC5D2FD65109004BF0AF /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		592E1BAC2FCD1F45003FB46C /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
 		592E1BAF2FCD1F45003FB46C /* LiveCryptoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCryptoView.swift; sourceTree = "<group>"; };
@@ -52,6 +58,14 @@
 		E786FA742FD7651900CD7E01 /* CoinSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelector.swift; sourceTree = "<group>"; };
 		E786FA762FD76C1100CD7E01 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		33A3AC032FD6420F004BF0AF /* CoreData */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2EC4B41E2FC6FCD7005064D0 /* Frameworks */ = {
@@ -106,6 +120,8 @@
 		592E1BB12FCD1F45003FB46C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				33A3AC5C2FD65109004BF0AF /* LoginViewModel.swift */,
+				33A3AC5D2FD65109004BF0AF /* RegisterViewModel.swift */,
 				592E1BBD2FCD1F52003FB46C /* WalletViewModel.swift */,
 			);
 			path = ViewModel;
@@ -122,12 +138,14 @@
 		592E1BB62FCD1F45003FB46C /* CryptoWallet */ = {
 			isa = PBXGroup;
 			children = (
+				33A3AC032FD6420F004BF0AF /* CoreData */,
 				592E1BC12FCD200D003FB46C /* Components */,
 				592E1BAE2FCD1F45003FB46C /* Model */,
 				592E1BB02FCD1F45003FB46C /* View */,
 				592E1BB12FCD1F45003FB46C /* ViewModel */,
 				592E1BB32FCD1F45003FB46C /* WebSocket */,
 				592E1BB42FCD1F45003FB46C /* Assets.xcassets */,
+				33A3AC332FD643A5004BF0AF /* Model.xcdatamodeld */,
 				592E1BB52FCD1F45003FB46C /* CryptoWalletApp.swift */,
 			);
 			path = CryptoWallet;
@@ -161,6 +179,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				33A3AC032FD6420F004BF0AF /* CoreData */,
 			);
 			name = CryptoWallet;
 			packageProductDependencies = (
@@ -236,6 +257,9 @@
 				E786FA772FD76C1100CD7E01 /* FeedbackView.swift in Sources */,
 				E786FA622FD718C100CD7E01 /* SignUpView.swift in Sources */,
 				592E1BBC2FCD1F45003FB46C /* CryptoWalletApp.swift in Sources */,
+				33A3AC362FD643A5004BF0AF /* Model.xcdatamodeld in Sources */,
+				33A3AC5E2FD65109004BF0AF /* RegisterViewModel.swift in Sources */,
+				33A3AC5F2FD65109004BF0AF /* LoginViewModel.swift in Sources */,
 				592E1BC32FCD2014003FB46C /* ActionButton.swift in Sources */,
 				E786FA5C2FD7187900CD7E01 /* LabeledTextField.swift in Sources */,
 			);
@@ -447,6 +471,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		33A3AC332FD643A5004BF0AF /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				33A3AC342FD643A5004BF0AF /* Model.xcdatamodel */,
+			);
+			currentVersion = 33A3AC342FD643A5004BF0AF /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2EC4B4192FC6FCD7005064D0 /* Project object */;
 }
