@@ -4,14 +4,16 @@ struct WalletView: View {
     
     @StateObject var viewModel = WalletViewModel()
     @State private var selectedTab: Tab = .all
+    @State private var showTransactionScreen: Bool = false
+    @State private var transactionMode: SellOrBuyView.Mode = .buy
     
     enum Tab {
         case your, all
     }
     
     var body: some View {
-        AppBackground {
-            ZStack {
+        ZStack {
+            AppBackground {
                 VStack(spacing: 32) {
                     
                     Text("Wallet")
@@ -41,8 +43,19 @@ struct WalletView: View {
                     )
                     
                     HStack(spacing: 14) {
-                        ActionButton(title: "Buy", icon: "plus")
-                        ActionButton(title: "Sell", icon: "minus")
+                        Button(action: {
+                            transactionMode = .buy
+                            showTransactionScreen = true
+                        }) {
+                            ActionButton(title: "Buy", icon: "plus")
+                        }
+                        
+                        Button(action: {
+                            transactionMode = .sell
+                            showTransactionScreen = true
+                        }) {
+                            ActionButton(title: "Sell", icon: "minus")
+                        }
                     }
                     
                     ZStack {
@@ -87,7 +100,13 @@ struct WalletView: View {
                 }
                 .padding(14)
             }
+            
+            if showTransactionScreen {
+                SellOrBuyView(mode: transactionMode)
+                    .transition(.move(edge: .trailing))
+            }
         }
+        .animation(.easeInOut(duration: 0.3), value: showTransactionScreen)
     }
     
     var coinsGrid: some View {
@@ -112,3 +131,5 @@ struct WalletView: View {
 #Preview {
     WalletView()
 }
+
+
