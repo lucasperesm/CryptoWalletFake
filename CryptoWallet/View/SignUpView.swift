@@ -1,6 +1,7 @@
 import SwiftUI
 
-struct LoginView: View {
+struct ContentView: View {
+    @State private var nome = ""
     @State private var email = ""
     @State private var senha = ""
 
@@ -9,15 +10,23 @@ struct LoginView: View {
             AppBackground()
 
             VStack(spacing: 28) {
-                Text("Login")
+                Text("Create account")
                     .font(.largeTitle)
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 16)
 
                 LabeledTextField(
-                    title: "Email",
-                    placeholder: "Enter your email",
+                    title: "Nome",
+                    placeholder: "Digite seu nome",
+                    text: $nome
+                )
+                .padding(.horizontal, 24)
+                .padding(.top, 40)
+
+                LabeledTextField(
+                    title: "E-mail",
+                    placeholder: "Digite seu e-mail",
                     text: $email,
                     keyboardType: .emailAddress,
                     autocapitalization: .never
@@ -25,31 +34,16 @@ struct LoginView: View {
                 .padding(.horizontal, 24)
 
                 LabeledTextField(
-                    title: "Password",
-                    placeholder: "Enter your password",
+                    title: "Senha",
+                    placeholder: "Digite sua senha",
                     text: $senha,
                     isSecure: true
                 )
                 .padding(.horizontal, 24)
 
-                PrimaryButton(title: "Sign in", action: {})
+                PrimaryButton(title: "Create", action: {})
                     .padding(.horizontal, 24)
                     .padding(.top, 40)
-                
-                HStack {
-                    Text("Don’t have an account? ")
-                        .foregroundColor(.white)
-                        .opacity(0.5)
-                        .multilineTextAlignment(.center)
-                    
-                    Text("Sign up")
-                        .foregroundColor(.white)
-                        .opacity(0.5)
-                        .multilineTextAlignment(.center)
-                        .underline()
-                        .onTapGesture {}
-
-                }
             }
             .padding(.vertical, 48)
         }
@@ -57,5 +51,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    ContentView()
 }
