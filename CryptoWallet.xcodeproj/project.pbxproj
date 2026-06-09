@@ -10,6 +10,11 @@
 		33A3AC362FD643A5004BF0AF /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33A3AC332FD643A5004BF0AF /* Model.xcdatamodeld */; };
 		33A3AC5E2FD65109004BF0AF /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3AC5D2FD65109004BF0AF /* RegisterViewModel.swift */; };
 		33A3AC5F2FD65109004BF0AF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A3AC5C2FD65109004BF0AF /* LoginViewModel.swift */; };
+		467CD45D2FD8292B00D06E88 /* LogoCriptoWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD45C2FD8292B00D06E88 /* LogoCriptoWallet.swift */; };
+		467CD4602FD82D5D00D06E88 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD45E2FD82D5D00D06E88 /* PrimaryButton.swift */; };
+		467CD4612FD82D5D00D06E88 /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD45F2FD82D5D00D06E88 /* LabeledTextField.swift */; };
+		467CD4642FD82D7A00D06E88 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4622FD82D7A00D06E88 /* SignUpView.swift */; };
+		467CD4652FD82D7A00D06E88 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4632FD82D7A00D06E88 /* LoginView.swift */; };
 		592E1BB72FCD1F45003FB46C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 592E1BB42FCD1F45003FB46C /* Assets.xcassets */; };
 		592E1BB82FCD1F45003FB46C /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BAC2FCD1F45003FB46C /* CoinModel.swift */; };
 		592E1BB92FCD1F45003FB46C /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */; };
@@ -28,6 +33,11 @@
 		33A3AC342FD643A5004BF0AF /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		33A3AC5C2FD65109004BF0AF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		33A3AC5D2FD65109004BF0AF /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		467CD45C2FD8292B00D06E88 /* LogoCriptoWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoCriptoWallet.swift; sourceTree = "<group>"; };
+		467CD45E2FD82D5D00D06E88 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		467CD45F2FD82D5D00D06E88 /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
+		467CD4622FD82D7A00D06E88 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		467CD4632FD82D7A00D06E88 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		592E1BAC2FCD1F45003FB46C /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
 		592E1BAF2FCD1F45003FB46C /* LiveCryptoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCryptoView.swift; sourceTree = "<group>"; };
@@ -90,6 +100,8 @@
 			children = (
 				592E1BBF2FCD1F74003FB46C /* WalletView.swift */,
 				592E1BAF2FCD1F45003FB46C /* LiveCryptoView.swift */,
+				467CD4632FD82D7A00D06E88 /* LoginView.swift */,
+				467CD4622FD82D7A00D06E88 /* SignUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -134,6 +146,9 @@
 				596A88632FCD268C00840930 /* AppBackground.swift */,
 				592E1BC42FCD2065003FB46C /* CoinCard.swift */,
 				592E1BC22FCD2014003FB46C /* ActionButton.swift */,
+				467CD45C2FD8292B00D06E88 /* LogoCriptoWallet.swift */,
+				467CD45F2FD82D5D00D06E88 /* LabeledTextField.swift */,
+				467CD45E2FD82D5D00D06E88 /* PrimaryButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -213,6 +228,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467CD4642FD82D7A00D06E88 /* SignUpView.swift in Sources */,
+				467CD4652FD82D7A00D06E88 /* LoginView.swift in Sources */,
+				467CD4602FD82D5D00D06E88 /* PrimaryButton.swift in Sources */,
+				467CD4612FD82D5D00D06E88 /* LabeledTextField.swift in Sources */,
+				467CD45D2FD8292B00D06E88 /* LogoCriptoWallet.swift in Sources */,
 				592E1BC52FCD2065003FB46C /* CoinCard.swift in Sources */,
 				592E1BB82FCD1F45003FB46C /* CoinModel.swift in Sources */,
 				592E1BB92FCD1F45003FB46C /* CryptoModel.swift in Sources */,

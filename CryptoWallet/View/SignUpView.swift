@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ContentView: View {
+struct SignUpView: View {
     @State private var nome = ""
     @State private var email = ""
     @State private var senha = ""
@@ -10,6 +10,10 @@ struct ContentView: View {
             AppBackground()
 
             VStack(spacing: 28) {
+                
+                LogoCriptoWallet(size: 90)
+                Spacer()
+                
                 Text("Create account")
                     .font(.largeTitle)
                     .foregroundColor(.white)
@@ -22,7 +26,6 @@ struct ContentView: View {
                     text: $nome
                 )
                 .padding(.horizontal, 24)
-                .padding(.top, 40)
 
                 LabeledTextField(
                     title: "E-mail",
@@ -51,5 +54,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    SignUpView()
 }
