@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct CoinCard: View {
-    let coin: Coin
+    let coin: CoinModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
