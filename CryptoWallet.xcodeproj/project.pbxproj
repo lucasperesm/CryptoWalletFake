@@ -26,6 +26,10 @@
 		592E1BC32FCD2014003FB46C /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BC22FCD2014003FB46C /* ActionButton.swift */; };
 		592E1BC52FCD2065003FB46C /* CoinCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BC42FCD2065003FB46C /* CoinCard.swift */; };
 		596A88642FCD268C00840930 /* AppBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596A88632FCD268C00840930 /* AppBackground.swift */; };
+		E786FA9F2FD83DCD00CD7E01 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786FA9E2FD83DCD00CD7E01 /* FeedbackView.swift */; };
+		E786FAA12FD83DDE00CD7E01 /* CoinSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786FAA02FD83DDE00CD7E01 /* CoinSelector.swift */; };
+		E786FAA32FD83E0000CD7E01 /* CoinCalculater.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786FAA22FD83E0000CD7E01 /* CoinCalculater.swift */; };
+		E786FAA52FD8414700CD7E01 /* SellOrBuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786FAA42FD8414700CD7E01 /* SellOrBuyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,10 @@
 		592E1BC22FCD2014003FB46C /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		592E1BC42FCD2065003FB46C /* CoinCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCard.swift; sourceTree = "<group>"; };
 		596A88632FCD268C00840930 /* AppBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackground.swift; sourceTree = "<group>"; };
+		E786FA9E2FD83DCD00CD7E01 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		E786FAA02FD83DDE00CD7E01 /* CoinSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinSelector.swift; sourceTree = "<group>"; };
+		E786FAA22FD83E0000CD7E01 /* CoinCalculater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCalculater.swift; sourceTree = "<group>"; };
+		E786FAA42FD8414700CD7E01 /* SellOrBuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellOrBuyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -91,6 +99,7 @@
 			children = (
 				592E1BAC2FCD1F45003FB46C /* CoinModel.swift */,
 				592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */,
+				E786FAA22FD83E0000CD7E01 /* CoinCalculater.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -102,6 +111,8 @@
 				592E1BAF2FCD1F45003FB46C /* LiveCryptoView.swift */,
 				467CD4632FD82D7A00D06E88 /* LoginView.swift */,
 				467CD4622FD82D7A00D06E88 /* SignUpView.swift */,
+				E786FA9E2FD83DCD00CD7E01 /* FeedbackView.swift */,
+				E786FAA42FD8414700CD7E01 /* SellOrBuyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +160,7 @@
 				467CD45C2FD8292B00D06E88 /* LogoCriptoWallet.swift */,
 				467CD45F2FD82D5D00D06E88 /* LabeledTextField.swift */,
 				467CD45E2FD82D5D00D06E88 /* PrimaryButton.swift */,
+				E786FAA02FD83DDE00CD7E01 /* CoinSelector.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -241,11 +253,15 @@
 				596A88642FCD268C00840930 /* AppBackground.swift in Sources */,
 				592E1BBE2FCD1F52003FB46C /* WalletViewModel.swift in Sources */,
 				592E1BBB2FCD1F45003FB46C /* BinanceWebSocketManager.swift in Sources */,
+				E786FA9F2FD83DCD00CD7E01 /* FeedbackView.swift in Sources */,
 				592E1BBC2FCD1F45003FB46C /* CryptoWalletApp.swift in Sources */,
 				33A3AC362FD643A5004BF0AF /* Model.xcdatamodeld in Sources */,
 				33A3AC5E2FD65109004BF0AF /* RegisterViewModel.swift in Sources */,
 				33A3AC5F2FD65109004BF0AF /* LoginViewModel.swift in Sources */,
+				E786FAA32FD83E0000CD7E01 /* CoinCalculater.swift in Sources */,
+				E786FAA52FD8414700CD7E01 /* SellOrBuyView.swift in Sources */,
 				592E1BC32FCD2014003FB46C /* ActionButton.swift in Sources */,
+				E786FAA12FD83DDE00CD7E01 /* CoinSelector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
