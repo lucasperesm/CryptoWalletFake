@@ -12,6 +12,7 @@ struct WalletView: View {
     }
     
     var body: some View {
+        NavigationStack {
         ZStack {
             AppBackground {
                 VStack(spacing: 32) {
@@ -107,6 +108,7 @@ struct WalletView: View {
             }
         }
         .animation(.easeInOut(duration: 0.3), value: showTransactionScreen)
+        }
     }
     
     var coinsGrid: some View {
@@ -122,7 +124,12 @@ struct WalletView: View {
         
         return LazyVGrid(columns: columns, spacing: 16) {
             ForEach(coinsToShow) { coin in
-                CoinCard(coin: coin)
+                NavigationLink {
+                    LiveCryptoView(symbol: coin.symbol.lowercased() + "usdt")
+                } label: {
+                    CoinCard(coin: coin)
+                }
+                .buttonStyle(.plain)
             }
         }
     }

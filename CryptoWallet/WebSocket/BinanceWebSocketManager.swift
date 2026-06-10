@@ -5,6 +5,7 @@ class BinanceWebSocketManager {
     private var webSocketTask: URLSessionWebSocketTask?
     
     var onPriceUpdate: ((Double) -> Void)?
+    var onError: ((String) -> Void)?
 
     func connect(symbol: String = "btcusdt") {
 
@@ -22,6 +23,10 @@ class BinanceWebSocketManager {
 
             case .failure(let error):
                 print("Erro:", error)
+                DispatchQueue.main.async {
+                    self?.onError?(error.localizedDescription)
+                }
+                return // para o loop de recepção
 
             case .success(let message):
                 switch message {
