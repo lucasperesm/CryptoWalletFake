@@ -31,3 +31,4 @@ struct CoinCard: View {
         .foregroundColor(.white)
     }
 }
+

@@ -4,8 +4,7 @@ struct WalletView: View {
     
     @StateObject var viewModel = WalletViewModel()
     @State private var selectedTab: Tab = .all
-    @State private var showTransactionScreen: Bool = false
-    @State private var transactionMode: SellOrBuyView.Mode = .buy
+    @Binding var selectedView: MenuOption
     
     enum Tab {
         case your, all
@@ -45,15 +44,13 @@ struct WalletView: View {
                     
                     HStack(spacing: 14) {
                         Button(action: {
-                            transactionMode = .buy
-                            showTransactionScreen = true
+                            selectedView = .buy
                         }) {
                             ActionButton(title: "Buy", icon: "plus")
                         }
                         
                         Button(action: {
-                            transactionMode = .sell
-                            showTransactionScreen = true
+                            selectedView = .sell
                         }) {
                             ActionButton(title: "Sell", icon: "minus")
                         }
@@ -101,11 +98,6 @@ struct WalletView: View {
                 }
                 .padding(14)
             }
-            
-            if showTransactionScreen {
-                SellOrBuyView(mode: transactionMode)
-                    .transition(.move(edge: .trailing))
-            }
         }
         .animation(.easeInOut(duration: 0.3), value: showTransactionScreen)
         }
@@ -136,7 +128,8 @@ struct WalletView: View {
 }
 
 #Preview {
-    WalletView()
+    @State var selectedView = MenuOption.wallet
+    return WalletView(selectedView: $selectedView)
 }
 
 

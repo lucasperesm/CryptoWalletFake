@@ -17,6 +17,10 @@
 		467CD4612FD82D5D00D06E88 /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD45F2FD82D5D00D06E88 /* LabeledTextField.swift */; };
 		467CD4642FD82D7A00D06E88 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4622FD82D7A00D06E88 /* SignUpView.swift */; };
 		467CD4652FD82D7A00D06E88 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4632FD82D7A00D06E88 /* LoginView.swift */; };
+		467CD4742FD8EB6A00D06E88 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4722FD8EB6A00D06E88 /* RootView.swift */; };
+		467CD4752FD8EB6A00D06E88 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4732FD8EB6A00D06E88 /* ContentView.swift */; };
+		467CD4772FD8EB9400D06E88 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4762FD8EB9400D06E88 /* SideMenuView.swift */; };
+		467CD4792FD8EF2000D06E88 /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467CD4782FD8EF2000D06E88 /* MenuOption.swift */; };
 		592E1BB72FCD1F45003FB46C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 592E1BB42FCD1F45003FB46C /* Assets.xcassets */; };
 		592E1BB82FCD1F45003FB46C /* CoinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BAC2FCD1F45003FB46C /* CoinModel.swift */; };
 		592E1BB92FCD1F45003FB46C /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */; };
@@ -46,6 +50,10 @@
 		467CD45F2FD82D5D00D06E88 /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
 		467CD4622FD82D7A00D06E88 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		467CD4632FD82D7A00D06E88 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		467CD4722FD8EB6A00D06E88 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		467CD4732FD8EB6A00D06E88 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		467CD4762FD8EB9400D06E88 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		467CD4782FD8EF2000D06E88 /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
 		592E1BAC2FCD1F45003FB46C /* CoinModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinModel.swift; sourceTree = "<group>"; };
 		592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
 		592E1BAF2FCD1F45003FB46C /* LiveCryptoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveCryptoView.swift; sourceTree = "<group>"; };
@@ -105,6 +113,7 @@
 				592E1BAD2FCD1F45003FB46C /* CryptoModel.swift */,
 				E786FAA22FD83E0000CD7E01 /* CoinCalculater.swift */,
 				2EE87CA52FD9A60400BE267D /* CryptoHolding+CoreDataClass.swift */,
+				467CD4782FD8EF2000D06E88 /* MenuOption.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +127,8 @@
 				467CD4622FD82D7A00D06E88 /* SignUpView.swift */,
 				E786FA9E2FD83DCD00CD7E01 /* FeedbackView.swift */,
 				E786FAA42FD8414700CD7E01 /* SellOrBuyView.swift */,
+				467CD4732FD8EB6A00D06E88 /* ContentView.swift */,
+				467CD4722FD8EB6A00D06E88 /* RootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,6 +178,7 @@
 				467CD45F2FD82D5D00D06E88 /* LabeledTextField.swift */,
 				467CD45E2FD82D5D00D06E88 /* PrimaryButton.swift */,
 				E786FAA02FD83DDE00CD7E01 /* CoinSelector.swift */,
+				467CD4762FD8EB9400D06E88 /* SideMenuView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -246,6 +258,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				467CD4792FD8EF2000D06E88 /* MenuOption.swift in Sources */,
+				467CD4772FD8EB9400D06E88 /* SideMenuView.swift in Sources */,
+				467CD4742FD8EB6A00D06E88 /* RootView.swift in Sources */,
+				467CD4752FD8EB6A00D06E88 /* ContentView.swift in Sources */,
 				467CD4642FD82D7A00D06E88 /* SignUpView.swift in Sources */,
 				2EE87CA42FD9A59500BE267D /* LiveCryptoViewModel.swift in Sources */,
 				467CD4652FD82D7A00D06E88 /* LoginView.swift in Sources */,

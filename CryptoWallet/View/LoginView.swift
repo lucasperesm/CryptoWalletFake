@@ -4,6 +4,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var senha = ""
+    @Binding var isLoggedIn: Bool
 
     var body: some View {
         NavigationStack{
@@ -37,8 +38,15 @@ struct LoginView: View {
                         isSecure: true
                     )
                     .padding(.horizontal, 24)
+                    .padding(.top, 24)
                     
-                    PrimaryButton(title: "Sign in", action: {})
+                    PrimaryButton(title: "Sign in", action: {
+                        if !email.isEmpty && !senha.isEmpty {
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                isLoggedIn = true
+                            }
+                        }
+                    })
                         .padding(.horizontal, 24)
                         .padding(.top, 40)
                     
@@ -66,5 +74,6 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView()
+    @State var isLoggedIn = false
+    return LoginView(isLoggedIn: $isLoggedIn)
 }
