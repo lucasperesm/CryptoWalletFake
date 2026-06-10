@@ -1,6 +1,6 @@
 import Foundation
 
-struct CoinModel: Identifiable {
+struct CoinModel: Identifiable, Equatable {
     let id: UUID
     let name: String
     let symbol: String

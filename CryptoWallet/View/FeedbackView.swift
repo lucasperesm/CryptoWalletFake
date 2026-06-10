@@ -52,11 +52,9 @@ struct FeedbackView: View {
     }
 
     private var amountText: String {
-
         guard !amountInBRL.isEmpty else { return "" }
-
-        return "R$ \(amountInBRL)"
-
+        let crypto = CoinCalculator.cryptoAmount(fromBRL: amountInBRL, coinValue: coin?.value ?? 1)
+        return "R$ \(amountInBRL) • \(crypto) \(coin?.symbol ?? "")"
     }
 
     var body: some View {
