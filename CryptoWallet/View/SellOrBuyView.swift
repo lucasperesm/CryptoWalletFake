@@ -148,15 +148,18 @@ struct SellOrBuyView: View {
                                         
                                         Spacer()
                                         
-                                        HStack(spacing: 6) {
-                                            Text(CoinCalculator.cryptoAmount(fromBRL: amountInBRL, coinValue: selectedCoin?.value ?? 1))
-                                                .font(.system(size: 14, weight: .semibold))
-                                                .foregroundColor(.white)
-                                                .multilineTextAlignment(.trailing)
-                                            
-                                            Text(selectedCoin?.name ?? "ETH")
-                                                .font(.system(size: 14, weight: .semibold))
-                                                .foregroundColor(.white.opacity(0.7))
+                                        HStack {
+                                           Spacer()
+                                           if amountInBRL.isEmpty {
+                                               Text("0,00")
+                                                   .font(.system(size: 16, weight: .semibold))
+                                                   .foregroundColor(.white.opacity(0.4))
+                                           } else {
+                                               Text(CoinCalculator.cryptoAmount(fromBRL: amountInBRL,
+                                                     coinValue: selectedCoin?.value ?? 1))
+                                                   .font(.system(size: 14, weight: .semibold))
+                                                   .foregroundColor(.white)
+                                           }
                                         }
                                         .padding(.horizontal, 14)
                                         .frame(height: 44)
@@ -253,6 +256,8 @@ struct SellOrBuyView: View {
 #Preview {
     SellOrBuyView(mode: .buy)
 }
+
+
 
 
 
