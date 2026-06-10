@@ -24,12 +24,13 @@ struct CoinCalculator {
         return formatBRL(newBalance)
     }
     
-    static func balanceAfterCrypto(amountBRL: String, coinValue: Double, symbol: String, isBuy: Bool) -> String {
-        guard let cryptoAmount = decimalAmount(from: amountBRL).map({ $0 / coinValue }) else {
-            return "0 \(symbol)"
+    static func balanceAfterCrypto(amountBRL: String, coinValue: Double, currentOwned: Double, symbol: String, isBuy: Bool) -> String {
+        guard let amount = decimalAmount(from: amountBRL) else {
+            return String(format: "%.6f", currentOwned) + " " + symbol
         }
-        
-        let newBalance = isBuy ? cryptoAmount : -cryptoAmount
+
+        let cryptoAmount = amount / coinValue
+        let newBalance = isBuy ? (currentOwned + cryptoAmount) : (currentOwned - cryptoAmount)
         return String(format: "%.6f", newBalance) + " " + symbol
     }
     
