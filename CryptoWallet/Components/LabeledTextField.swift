@@ -1,7 +1,5 @@
 import SwiftUI
 
-private let labelBackgroundColor = Color(red: 0.07, green: 0.06, blue: 0.15)
-
 struct LabeledTextField: View {
     let title: String
     let placeholder: String
@@ -16,6 +14,7 @@ struct LabeledTextField: View {
                 .stroke(Color.white.opacity(0.35), lineWidth: 1.5)
                 .frame(height: 60)
                 .padding(.top, 10)
+                
 
             Group {
                 if isSecure {
@@ -44,8 +43,10 @@ struct LabeledTextField: View {
                 .font(.subheadline)
                 .foregroundColor(.white.opacity(0.85))
                 .padding(.horizontal, 6)
-                .background(labelBackgroundColor)
-                .padding(.leading, 16)
+                .padding(.leading, -6)
+                                .offset(y: -16)
+
+            
         }
     }
 }

@@ -35,6 +35,7 @@ struct SignUpView: View {
                     autocapitalization: .never
                 )
                 .padding(.horizontal, 24)
+                .padding(.top, 24)
 
                 LabeledTextField(
                     title: "Senha",
@@ -43,6 +44,7 @@ struct SignUpView: View {
                     isSecure: true
                 )
                 .padding(.horizontal, 24)
+                .padding(.top, 24)
 
                 PrimaryButton(title: "Create", action: {})
                     .padding(.horizontal, 24)
