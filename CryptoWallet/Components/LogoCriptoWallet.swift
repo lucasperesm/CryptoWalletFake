@@ -43,10 +43,7 @@ struct LogoCriptoWallet: View {
                 
                 
                 
-                // Coin (moeda) com brilho
-                
-                
-                
+        
                 
                 // Moeda stroke
                 Circle()

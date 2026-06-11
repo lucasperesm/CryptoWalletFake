@@ -23,7 +23,7 @@ struct LoginView: View {
                         .padding(.bottom, 16)
                     
                     LabeledTextField(
-                        title: "Email",
+                        title: "E-mail",
                         placeholder: "Enter your email",
                         text: $email,
                         keyboardType: .emailAddress,

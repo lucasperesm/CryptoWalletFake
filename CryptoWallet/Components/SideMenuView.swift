@@ -133,21 +133,15 @@ struct SideMenuView: View {
                     
                 .frame(maxWidth: 280)
                 .background(
-                    Color(red: 0.1, green: 0.1, blue: 0.2)
-                        .mask(
-                        LinearGradient(
-                            gradient: Gradient(stops:[
-                                .init(color: .white, location: 0.0),
-                                .init(color: .white, location: 0.878),
-                                .init(color: .clear, location: 1.0)
-                            ]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            
-                    )
-                    )
+                    ZStack {
+                        Color.clear
+                            .glassEffect(.regular, in: .rect(cornerRadius: 24.0))
+                        
+                        Color.black
+                            .opacity(0.8)
+                    }
                 )
-                
+                .clipShape(RoundedRectangle(cornerRadius: 24))
                 Spacer()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
