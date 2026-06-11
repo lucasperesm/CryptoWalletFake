@@ -21,15 +21,15 @@ struct SignUpView: View {
                     .padding(.bottom, 16)
 
                 LabeledTextField(
-                    title: "Nome",
-                    placeholder: "Digite seu nome",
+                    title: "Name",
+                    placeholder: "Enter your name",
                     text: $nome
                 )
                 .padding(.horizontal, 24)
 
                 LabeledTextField(
                     title: "E-mail",
-                    placeholder: "Digite seu e-mail",
+                    placeholder: "Enter your email",
                     text: $email,
                     keyboardType: .emailAddress,
                     autocapitalization: .never
@@ -38,8 +38,8 @@ struct SignUpView: View {
                 .padding(.top, 24)
 
                 LabeledTextField(
-                    title: "Senha",
-                    placeholder: "Digite sua senha",
+                    title: "Password",
+                    placeholder: "Enter your password",
                     text: $senha,
                     isSecure: true
                 )
