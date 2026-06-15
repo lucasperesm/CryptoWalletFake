@@ -1,18 +1,17 @@
 import SwiftUI
 
-
 struct LoginView: View {
-    @State private var email = ""
-    @State private var senha = ""
+
     @Binding var isLoggedIn: Bool
+    @Environment(\.managedObjectContext) private var viewContext
+    @StateObject private var viewModel = LoginViewModel()
 
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             ZStack {
                 AppBackground()
                 
                 VStack(spacing: 28) {
-                    
                     LogoCriptoWallet(size: 90)
                     Spacer()
                     
@@ -25,7 +24,7 @@ struct LoginView: View {
                     LabeledTextField(
                         title: "E-mail",
                         placeholder: "Enter your email",
-                        text: $email,
+                        text: $viewModel.email,
                         keyboardType: .emailAddress,
                         autocapitalization: .never
                     )
@@ -34,46 +33,51 @@ struct LoginView: View {
                     LabeledTextField(
                         title: "Password",
                         placeholder: "Enter your password",
-                        text: $senha,
+                        text: $viewModel.password,
                         isSecure: true
                     )
                     .padding(.horizontal, 24)
                     .padding(.top, 24)
                     
+                    if !viewModel.errorMessage.isEmpty {
+                        Text(viewModel.errorMessage)
+                            .foregroundColor(.red)
+                            .font(.system(size: 14, weight: .semibold))
+                    }
+                    
                     PrimaryButton(title: "Sign in", action: {
-                        if !email.isEmpty && !senha.isEmpty {
-                            withAnimation(.easeInOut(duration: 0.3)) {
-                                isLoggedIn = true
-                            }
-                        }
+                        viewModel.login(context: viewContext)
                     })
-                        .padding(.horizontal, 24)
-                        .padding(.top, 40)
+                    .padding(.horizontal, 24)
+                    .padding(.top, 40)
                     
                     HStack {
-                        
                         Text("Don’t have an account? ")
                             .foregroundColor(.white)
                             .opacity(0.5)
-                            .multilineTextAlignment(.center)
                         
-                    
                         NavigationLink("Sign up") {
                             SignUpView()
-                        }.foregroundColor(.white)
-                            .opacity(0.5)
-                            .multilineTextAlignment(.center)
-                            .underline()
-                            .onTapGesture {}
+                        }
+                        .foregroundColor(.white)
+                        .opacity(0.5)
+                        .underline()
                     }
                 }
                 .padding(.vertical, 48)
             }
         }
+        .onChange(of: viewModel.isLogged) { oldValue, newValue in
+            if newValue {
+                withAnimation(.easeInOut(duration: 0.3)) {
+                    isLoggedIn = true
+                }
+            }
+        }
     }
 }
 
-#Preview {
-    @State var isLoggedIn = false
-    return LoginView(isLoggedIn: $isLoggedIn)
-}
+//#Preview {
+//    @State var isLoggedIn = false
+//    return LoginView(isLoggedIn: $isLoggedIn)
+//}

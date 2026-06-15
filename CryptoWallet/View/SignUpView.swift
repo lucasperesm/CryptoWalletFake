@@ -1,9 +1,12 @@
 import SwiftUI
 
 struct SignUpView: View {
-    @State private var nome = ""
-    @State private var email = ""
-    @State private var senha = ""
+ 
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @Environment(\.dismiss) private var dismiss
+    
+    @StateObject private var viewModel = RegisterViewModel()
 
     var body: some View {
         ZStack {
@@ -23,14 +26,14 @@ struct SignUpView: View {
                 LabeledTextField(
                     title: "Name",
                     placeholder: "Enter your name",
-                    text: $nome
+                    text: $viewModel.name
                 )
                 .padding(.horizontal, 24)
 
                 LabeledTextField(
                     title: "E-mail",
                     placeholder: "Enter your email",
-                    text: $email,
+                    text: $viewModel.email,
                     keyboardType: .emailAddress,
                     autocapitalization: .never
                 )
@@ -40,17 +43,30 @@ struct SignUpView: View {
                 LabeledTextField(
                     title: "Password",
                     placeholder: "Enter your password",
-                    text: $senha,
+                    text: $viewModel.password,
                     isSecure: true
                 )
                 .padding(.horizontal, 24)
                 .padding(.top, 24)
 
-                PrimaryButton(title: "Create", action: {})
-                    .padding(.horizontal, 24)
-                    .padding(.top, 40)
+                if !viewModel.errorMessage.isEmpty {
+                    Text(viewModel.errorMessage)
+                        .foregroundColor(.red)
+                        .font(.system(size: 14, weight: .semibold))
+                }
+
+                PrimaryButton(title: "Create", action: {
+                    viewModel.cadastrar(context: viewContext)
+                })
+                .padding(.horizontal, 24)
+                .padding(.top, 40)
             }
             .padding(.vertical, 48)
+        }
+        .onChange(of: viewModel.sucess) { oldValue, newValue in
+            if newValue {
+                dismiss()
+            }
         }
     }
 }

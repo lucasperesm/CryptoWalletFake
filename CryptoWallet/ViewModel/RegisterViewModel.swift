@@ -1,6 +1,7 @@
 import Foundation
 import CoreData
 import Combine
+import CryptoKit
 
 class RegisterViewModel: ObservableObject {
 
@@ -31,7 +32,7 @@ class RegisterViewModel: ObservableObject {
             let newUser = User(context: context)
             newUser.name = name
             newUser.email = email
-            newUser.password = password
+            newUser.password = hashPassword(password)
 
             try context.save()
 
@@ -42,5 +43,12 @@ class RegisterViewModel: ObservableObject {
             errorMessage = "Erro ao cadastrar"
             print(error)
         }
+    }
+    
+    private func hashPassword(_ text: String) -> String {
+        let inputData = Data(text.utf8)
+        let hashed = SHA256.hash(data: inputData)
+        
+        return hashed.compactMap { String(format: "%02x", $0) }.joined()
     }
 }
