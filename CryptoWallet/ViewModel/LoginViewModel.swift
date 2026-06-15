@@ -1,6 +1,7 @@
 import Foundation
 import CoreData
 import Combine
+import CryptoKit
 
 class LoginViewModel: ObservableObject {
 
@@ -18,10 +19,12 @@ class LoginViewModel: ObservableObject {
 
         let request = NSFetchRequest<NSManagedObject>(entityName: "User")
         
+        let encryptedPassword = hashPassword(password)
+        
         request.predicate = NSPredicate(
-            format: "email == %@ AND senha == %@",
+            format: "email == %@ AND password == %@",
             email,
-            password
+            encryptedPassword
         )
 
         do {
@@ -38,5 +41,11 @@ class LoginViewModel: ObservableObject {
             errorMessage = "Erro ao autenticar"
             print("Erro Core Data: \(error)")
         }
+    }
+    
+    private func hashPassword(_ text: String) -> String {
+        let inputData = Data(text.utf8)
+        let hashed = SHA256.hash(data: inputData)
+        return hashed.compactMap { String(format: "%02x", $0) }.joined()
     }
 }
