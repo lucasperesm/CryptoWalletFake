@@ -15,12 +15,11 @@ struct WalletView: View {
             ZStack {
                 AppBackground {
                     VStack(spacing: 32) {
-                        
                         Text("Wallet")
                             .font(.title2)
                             .bold()
                             .foregroundColor(.white)
-                        
+                            .padding(EdgeInsets(top: 90, leading: 0, bottom: 10, trailing: 0))
                         VStack(spacing: 10) {
                             Text("$\(viewModel.totalBalance, specifier: "%.0f")")
                                 .font(.system(size: 32, weight: .semibold))
@@ -95,7 +94,7 @@ struct WalletView: View {
                         .frame(height: 44)
                         
                         coinsGrid
-                    }
+                    }.frame(maxHeight: .infinity, alignment: .top)
                     .padding(14)
                 }
             }
@@ -121,8 +120,11 @@ struct WalletView: View {
                     CoinCard(coin: coin)
                 }
                 .buttonStyle(.plain)
+                
             }
+            
         }
+        
     }
 }
 
