@@ -1,11 +1,13 @@
 import SwiftUI
+import CoreData
 
 struct WalletView: View {
     
     @StateObject var viewModel = WalletViewModel()
     @State private var selectedTab: Tab = .all
     @Binding var selectedView: MenuOption
-    
+    @Environment(\.managedObjectContext) private var context
+    @State private var currentUser: User?
     enum Tab {
         case your, all
     }
@@ -19,7 +21,12 @@ struct WalletView: View {
                             .font(.title2)
                             .bold()
                             .foregroundColor(.white)
-                            .padding(EdgeInsets(top: 90, leading: 0, bottom: 10, trailing: 0))
+                            .padding(EdgeInsets(top: 90, leading: 0, bottom: 0, trailing: 0))
+                        Label("Olá, \(currentUser?.name ?? "User")", systemImage: "person.circle.fill")
+                                        .font(.system(size: 16, weight: .semibold))
+                                        .foregroundColor(.white).padding(.bottom, 24)
+                                        .padding(.vertical, -16)
+                        
                         VStack(spacing: 10) {
                             Text("$\(viewModel.totalBalance, specifier: "%.0f")")
                                 .font(.system(size: 32, weight: .semibold))
@@ -98,6 +105,21 @@ struct WalletView: View {
                     .padding(14)
                 }
             }
+        }
+        .onAppear {
+            carregarUsuario()
+        }
+    }
+    
+    private func carregarUsuario() {
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        request.fetchLimit = 1
+        
+        do {
+            currentUser = try context.fetch(request).first
+            
+        } catch {
+            print(error.localizedDescription)
         }
     }
     

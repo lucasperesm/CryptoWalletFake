@@ -1,10 +1,16 @@
 import SwiftUI
+import CoreData
 
 struct SideMenuView: View {
     @Binding var isOpen: Bool
     @Binding var selectedView: MenuOption
     var onLogout: (() -> Void)? = nil
     
+    @Environment(\.managedObjectContext) private var context
+    @State private var currentUser: User?
+    
+
+            
     var body: some View {
         ZStack {
             // Overlay semi-transparente
@@ -17,7 +23,7 @@ struct SideMenuView: View {
                         }
                     }
             }
-            
+    
             // Menu Lateral
             HStack(spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
@@ -27,6 +33,8 @@ struct SideMenuView: View {
                             LogoCriptoWallet()
                                 .padding(.top, 36)
                             Spacer()
+                            
+                            
                             
                             Button {
                                 withAnimation(.easeInOut(duration: 0.3)) {
@@ -48,6 +56,15 @@ struct SideMenuView: View {
                     
                     ScrollView {
                         VStack(alignment: .leading, spacing: 12) {
+                            
+                            // Pegar o nome do usuário logado do core data e mostrar no menu
+                            
+                            Label("Olá, \(currentUser?.name ?? "User")", systemImage: "person.circle.fill")
+                                            .font(.system(size: 16, weight: .semibold))
+                                            .foregroundColor(.white).padding(.horizontal, 16)
+                                            .padding(.bottom, 30)
+                        
+                            
                             // MARK: - Wallet Option
                             VStack(spacing: 0) {
                                 Button(action: {
@@ -57,7 +74,7 @@ struct SideMenuView: View {
                                     }
                                 }) {
                                     HStack {
-                                        Label("My Wallet", systemImage: "person.circle.fill")
+                                        Label("My Wallet", systemImage: "wallet.bifold")
                                             .font(.system(size: 16, weight: .semibold))
                                             .foregroundColor(.white)
                                         
@@ -65,7 +82,7 @@ struct SideMenuView: View {
                                     }
                                     .contentShape(Rectangle())
                                 }
-                                .padding(.horizontal, 16)
+                                .padding(.horizontal, 28)
                                 .padding(.vertical, 12)
                             }
                             // MARK: - Buy Option
@@ -84,7 +101,7 @@ struct SideMenuView: View {
                                 }
                                 .contentShape(Rectangle())
                             }
-                            .padding(.horizontal, 16)
+                            .padding(.horizontal, 28)
                             .padding(.vertical, 12)
                             // MARK: - Sell Option
                             Button(action: {
@@ -102,7 +119,7 @@ struct SideMenuView: View {
                                 }
                                 .contentShape(Rectangle())
                             }
-                            .padding(.horizontal, 16)
+                            .padding(.horizontal, 28)
                             .padding(.vertical, 12)
                         }
                         .padding(.vertical, 8)
@@ -149,6 +166,21 @@ struct SideMenuView: View {
             .animation(.easeInOut(duration: 0.3), value: isOpen)
         }
         .ignoresSafeArea()
+        .onAppear {
+            carregarUsuario()
+        }
+    }
+    
+    private func carregarUsuario() {
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        request.fetchLimit = 1
+        
+        do {
+            currentUser = try context.fetch(request).first
+            
+        } catch {
+            print(error.localizedDescription)
+        }
     }
 }
 

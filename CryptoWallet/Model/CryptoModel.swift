@@ -10,6 +10,6 @@ struct BinanceTrade: Codable {
     let price: String
 
     enum CodingKeys: String, CodingKey {
-        case price = "p"
+        case price = "c"
     }
 }
