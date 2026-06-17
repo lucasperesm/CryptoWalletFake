@@ -31,6 +31,7 @@ class LoginViewModel: ObservableObject {
             let resultado = try context.fetch(request)
 
             if resultado.count > 0 {
+                UserDefaults.standard.set(email, forKey: "loggedUserEmail")
                 isLogged = true
                 errorMessage = ""
             } else {

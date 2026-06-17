@@ -172,7 +172,11 @@ struct SideMenuView: View {
     }
     
     private func carregarUsuario() {
+        guard let email = UserDefaults.standard.string(forKey: "loggedUserEmail") else { return }
+        
         let request: NSFetchRequest<User> = User.fetchRequest()
+        request.predicate = NSPredicate(format: "email == %@", email)
+        
         request.fetchLimit = 1
         
         do {
