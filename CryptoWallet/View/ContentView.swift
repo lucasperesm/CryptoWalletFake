@@ -1,10 +1,10 @@
 import SwiftUI
-
+ 
 struct ContentView: View {
     @State private var menuOpen: Bool = false
     @State private var selectedView: MenuOption = .wallet
     @Binding var isLoggedIn: Bool
-    
+   
     var body: some View {
         ZStack {
             // Cada view tem seu próprio NavigationStack
@@ -28,7 +28,7 @@ struct ContentView: View {
                 .id("wallet")
             } else if selectedView == .buy {
                 NavigationStack {
-                    SellOrBuyView(mode: .buy)
+                    SellOrBuyView(selectedView: $selectedView, mode: .buy)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
                                 Button(action: {
@@ -46,7 +46,7 @@ struct ContentView: View {
                 .id("buy")
             } else if selectedView == .sell {
                 NavigationStack {
-                    SellOrBuyView(mode: .sell)
+                    SellOrBuyView(selectedView: $selectedView, mode: .sell)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
                                 Button(action: {
@@ -81,7 +81,7 @@ struct ContentView: View {
                 }
                 .id("liveCrypto")
             }
-            
+           
             // Menu lateral
             SideMenuView(isOpen: $menuOpen, selectedView: $selectedView, onLogout: {
                 isLoggedIn = false
@@ -89,8 +89,9 @@ struct ContentView: View {
         }
     }
 }
-
+ 
 #Preview {
     @State var isLoggedIn = true
     return ContentView(isLoggedIn: $isLoggedIn)
 }
+ 
