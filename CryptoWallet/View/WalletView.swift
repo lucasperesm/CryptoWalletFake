@@ -3,7 +3,7 @@ import CoreData
  
 struct WalletView: View {
    
-    @StateObject var viewModel = WalletViewModel()
+    @ObservedObject var viewModel: WalletViewModel
     @State private var selectedTab: Tab = .all
     @Binding var selectedView: MenuOption
     @Environment(\.managedObjectContext) private var context
@@ -184,8 +184,7 @@ struct WalletView: View {
  
 #Preview {
     @State var selectedView = MenuOption.wallet
-    WalletView(selectedView: $selectedView)
+    WalletView(viewModel: WalletViewModel(), selectedView: $selectedView)
 }
- 
  
  
