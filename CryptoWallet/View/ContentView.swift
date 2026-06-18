@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var menuOpen: Bool = false
     @State private var selectedView: MenuOption = .wallet
+    @StateObject private var walletViewModel = WalletViewModel()
     @Binding var isLoggedIn: Bool
    
     var body: some View {
@@ -10,7 +11,7 @@ struct ContentView: View {
             // Cada view tem seu próprio NavigationStack
             if selectedView == .wallet {
                 NavigationStack {
-                    WalletView(selectedView: $selectedView)
+                    WalletView(viewModel: walletViewModel, selectedView: $selectedView)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
                                 Button(action: {
@@ -28,7 +29,7 @@ struct ContentView: View {
                 .id("wallet")
             } else if selectedView == .buy {
                 NavigationStack {
-                    SellOrBuyView(selectedView: $selectedView, mode: .buy)
+                    SellOrBuyView(viewModel: walletViewModel, selectedView: $selectedView, mode: .buy)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
                                 Button(action: {
@@ -46,7 +47,7 @@ struct ContentView: View {
                 .id("buy")
             } else if selectedView == .sell {
                 NavigationStack {
-                    SellOrBuyView(selectedView: $selectedView, mode: .sell)
+                    SellOrBuyView(viewModel: walletViewModel, selectedView: $selectedView, mode: .sell)
                         .toolbar {
                             ToolbarItem(placement: .topBarLeading) {
                                 Button(action: {
@@ -94,4 +95,3 @@ struct ContentView: View {
     @State var isLoggedIn = true
     return ContentView(isLoggedIn: $isLoggedIn)
 }
- 
