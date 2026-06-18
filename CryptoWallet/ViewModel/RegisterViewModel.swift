@@ -14,7 +14,7 @@ class RegisterViewModel: ObservableObject {
     func cadastrar(context: NSManagedObjectContext) {
  
         guard !name.isEmpty, !email.isEmpty, !password.isEmpty else {
-            errorMessage = "Preencha todos os campos"
+            errorMessage = "Fill in all the fields"
             return
         }
  
@@ -25,7 +25,7 @@ class RegisterViewModel: ObservableObject {
             let resultado = try context.fetch(request)
  
             if resultado.count > 0 {
-                errorMessage = "Email já cadastrado"
+                errorMessage = "E-mail already registered"
                 return
             }
  
@@ -43,7 +43,7 @@ class RegisterViewModel: ObservableObject {
             errorMessage = ""
  
         } catch {
-            errorMessage = "Erro ao cadastrar"
+            errorMessage = "Error creating account"
             print(error)
         }
     }

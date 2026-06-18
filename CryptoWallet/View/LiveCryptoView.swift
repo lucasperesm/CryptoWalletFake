@@ -35,9 +35,14 @@ struct LiveCryptoView: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 40)
                     } else {
-                        let minY = (points.map(\.price).min() ?? 0) - 500
-                        let maxY = (points.map(\.price).max() ?? 0) + 500
- 
+                        let minPrice = points.map(\.price).min() ?? 0
+                        let maxPrice = points.map(\.price).max() ?? 0
+                        let range = maxPrice - minPrice
+                        let padding = max(range * 0.08, 10) // 8% do range, mínimo 10
+                        
+                        let minY = minPrice - padding
+                        let maxY = maxPrice + padding
+
                         priceChartView(points: points, minY: minY, maxY: maxY)
                     }
  
@@ -71,11 +76,12 @@ struct LiveCryptoView: View {
             Button { dismiss() } label: {
                 Image(systemName: "arrow.left")
                     .foregroundStyle(.white)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 20, weight: .semibold))
             }
-            .padding(.top, 16)
+            .padding(.top, 28)
             .padding(.bottom, 16)
- 
+            .frame(maxWidth: .infinity, alignment: .leading)
+
             VStack(){
                 HStack(spacing: 6) {
                     if let urlString = viewModel.coinImageURL, let url = URL(string: urlString) {

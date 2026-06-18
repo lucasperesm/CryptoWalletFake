@@ -13,7 +13,7 @@ class LoginViewModel: ObservableObject {
     func login(context: NSManagedObjectContext) {
 
         guard !email.isEmpty, !password.isEmpty else {
-            errorMessage = "Preencha todos os campos"
+            errorMessage = "Fill in all the fields"
             return
         }
 
@@ -31,14 +31,15 @@ class LoginViewModel: ObservableObject {
             let resultado = try context.fetch(request)
 
             if resultado.count > 0 {
+                UserDefaults.standard.set(email, forKey: "loggedUserEmail")
                 isLogged = true
                 errorMessage = ""
             } else {
-                errorMessage = "Login ou senha inválidos"
+                errorMessage = "Invalid login or password"
             }
 
         } catch {
-            errorMessage = "Erro ao autenticar"
+            errorMessage = "Authentication error"
             print("Erro Core Data: \(error)")
         }
     }
