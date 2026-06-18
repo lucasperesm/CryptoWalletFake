@@ -13,6 +13,7 @@ class WalletViewModel: ObservableObject {
    
     private let context: NSManagedObjectContext
     private var currentUser: User?
+    private var lastSuccessfulMarketPrices: [String: (price: Double, change: Double, icon: String)] = [:]
    
     @Published var coins: [CoinModel] = []
     @Published var fiatBalance: Double = 1074.32
@@ -215,6 +216,50 @@ class WalletViewModel: ObservableObject {
     }
    
     // MARK: - Gerenciamento de Dados
+ 
+    private func updateSpecificCoin(symbol: String) {
+        guard let currentUser = currentUser else { return }
+ 
+        let request = NSFetchRequest<NSManagedObject>(entityName: "Coin")
+        if isUsingRelationshipFallback {
+            request.predicate = NSPredicate(format: "(user == %@ OR user == nil) AND symbol == %@", currentUser, symbol)
+        } else {
+            request.predicate = NSPredicate(format: "user == %@ AND symbol == %@", currentUser, symbol)
+        }
+ 
+        do {
+            let results = try context.fetch(request)
+            if let coinEntity = results.first {
+                let coinSymbol = coinEntity.value(forKey: "symbol") as? String ?? ""
+                let coinName = coinEntity.value(forKey: "name") as? String ?? ""
+                let coinAmount = coinEntity.value(forKey: "amountOwned") as? Double ?? 0.0
+                let coinID = coinEntity.value(forKey: "id") as? UUID ?? UUID()
+ 
+                fetchBinanceMarketData { [weak self] marketPrices in
+                    guard let self else { return }
+ 
+                    let market = marketPrices[coinSymbol] ?? (0.0, 0.0, "dollarsign.circle")
+                    let updatedCoin = CoinModel(
+                        id: coinID,
+                        name: coinName,
+                        symbol: coinSymbol,
+                        value: market.price,
+                        percentage: market.change,
+                        icon: market.icon,
+                        amountOwned: coinAmount
+                    )
+ 
+                    DispatchQueue.main.async {
+                        if let index = self.coins.firstIndex(where: { $0.symbol == coinSymbol }) {
+                            self.coins[index] = updatedCoin
+                        }
+                    }
+                }
+            }
+        } catch {
+            print("Erro ao atualizar moeda específica: \(error)")
+        }
+    }
    
     // Busca as moedas do usuário no banco
     func fetchCoinsAndMarketData() {
@@ -292,6 +337,11 @@ class WalletViewModel: ObservableObject {
             "BNB": (150.0, 0.0, "b.circle"),
             "USD": (1.0, 0.0, "dollarsign.circle")
         ]
+       
+        // Usar últimos preços bem-sucedidos como fallback
+        for (key, value) in lastSuccessfulMarketPrices {
+            marketPrices[key] = value
+        }
  
         guard let url = URL(string: "https://api.binance.com/api/v3/ticker/24hr") else {
             completion(marketPrices)
@@ -325,6 +375,9 @@ class WalletViewModel: ObservableObject {
  
                     marketPrices[localSymbol] = (price, change, icon)
                 }
+               
+                // Atualizar cache de últimos preços bem-sucedidos
+                self.lastSuccessfulMarketPrices = marketPrices
             } catch {
                 print("Erro ao decodificar ticker 24h da Binance: \(error)")
             }
@@ -376,7 +429,7 @@ class WalletViewModel: ObservableObject {
             writeFiatBalance(currentFiat - amountBRL, for: currentUser)
            
             try context.save()
-            fetchCoinsAndMarketData()
+            updateSpecificCoin(symbol: symbol)
             return true
            
         } catch {
@@ -416,7 +469,7 @@ class WalletViewModel: ObservableObject {
                 writeFiatBalance(currentFiat + max(0, amountBRL), for: currentUser)
                
                 try context.save()
-                fetchCoinsAndMarketData()
+                updateSpecificCoin(symbol: symbol)
                 return true
             }
             return false

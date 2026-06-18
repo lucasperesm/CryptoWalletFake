@@ -62,7 +62,13 @@ struct CoinCalculator {
         }
        
         let cryptoAmount = amount / coinValue
-        return String(format: "%.6f", cryptoAmount)
+        return formatCryptoAmount(cryptoAmount)
+    }
+   
+    private static func formatCryptoAmount(_ value: Double) -> String {
+        let formatted = String(format: "%.6f", value)
+        let trimmed = formatted.replacingOccurrences(of: "0+$", with: "", options: .regularExpression)
+        return trimmed.hasSuffix(".") ? String(trimmed.dropLast()) : trimmed
     }
    
     static func balanceAfterFiat(currentBalance: Double, amountBRL: String, isBuy: Bool) -> String {
@@ -93,7 +99,7 @@ struct CoinCalculator {
    
     static func balanceAfterCrypto(amountBRL: String, coinValue: Double, currentOwned: Double, symbol: String, isBuy: Bool) -> String {
         guard let amount = decimalAmount(from: amountBRL), coinValue > 0 else {
-            return String(format: "%.6f", currentOwned) + " " + symbol
+            return formatCryptoAmount(currentOwned) + " " + symbol
         }
  
         let cryptoAmount = amount / coinValue
@@ -104,7 +110,7 @@ struct CoinCalculator {
             newBalance = max(0, currentOwned - cryptoAmount)
         }
  
-        return String(format: "%.6f", newBalance) + " " + symbol
+        return formatCryptoAmount(newBalance) + " " + symbol
     }
    
     private static func formatBRL(_ value: Double) -> String {

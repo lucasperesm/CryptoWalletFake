@@ -9,7 +9,7 @@ struct SellOrBuyView: View {
     }
  
     @Environment(\.dismiss) var dismiss
-    @StateObject var viewModel = WalletViewModel()
+    @ObservedObject var viewModel: WalletViewModel
     @Binding var selectedView: MenuOption
     @State private var selectedCoin: CoinModel?
     @State private var marketCapText: String = "--"
@@ -46,6 +46,12 @@ struct SellOrBuyView: View {
         .onChange(of: selectedCoin) { _ in
             loadMarketCapIfNeeded()
             fetchLivePriceIfNeeded()
+        }
+        .onChange(of: viewModel.coins) { _ in
+            // Atualizar a moeda selecionada com os dados mais recentes do viewModel
+            if let symbol = selectedCoin?.symbol, let updatedCoin = viewModel.coins.first(where: { $0.symbol == symbol }) {
+                selectedCoin = updatedCoin
+            }
         }
         .onChange(of: amountInBRL) { newValue in
             let masked = CoinCalculator.maskedBRLInput(from: newValue)
@@ -246,8 +252,16 @@ struct SellOrBuyView: View {
     private var selectedCoinName: String { selectedCoin?.name ?? "ETH" }
     private var selectedCoinSymbol: String { selectedCoin?.symbol ?? "ETH" }
     private var effectiveCoinPrice: Double { liveCoinPrice ?? selectedCoin?.value ?? 1 }
-    private var selectedCoinOwnedAmount: String { String(format: "%.6f %@", selectedCoin?.amountOwned ?? 0, selectedCoinSymbol) }
+    private var selectedCoinOwnedAmount: String { formatCryptoForDisplay(selectedCoin?.amountOwned ?? 0) + " " + selectedCoinSymbol }
     private var selectedCoinLivePrice: String { formatBRL(effectiveCoinPrice) }
+   
+    private func formatCryptoForDisplay(_ value: Double) -> String {
+        let formatted = String(format: "%.6f", value)
+        // Remove trailing zeros
+        let trimmed = formatted.replacingOccurrences(of: "0+$", with: "", options: .regularExpression)
+        // Remove ponto final se for número inteiro
+        return trimmed.hasSuffix(".") ? String(trimmed.dropLast()) : trimmed
+    }
  
     private func formatBRL(_ value: Double) -> String {
         let formatter = NumberFormatter()
@@ -372,8 +386,6 @@ struct SellOrBuyView: View {
  
 #Preview {
     @State var selectedView = MenuOption.buy
-    SellOrBuyView(selectedView: $selectedView, mode: .buy)
+    SellOrBuyView(viewModel: WalletViewModel(), selectedView: $selectedView, mode: .buy)
 }
- 
- 
  
