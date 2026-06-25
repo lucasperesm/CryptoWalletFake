@@ -10,12 +10,12 @@ O **CryptoWallet** é um aplicativo iOS nativo focado no gerenciamento e na simu
 - Melyssa Gleyce Dutra Carvalho
 - Pedro Henrique Nieto da Silva
 
-## ✨ Figma e Demonstação
+## 🧩 Protótipo e Demonstação
 
-### Design das telas
+### 🎨 Design das telas
 [Clique aqui para ver o Figma](https://www.figma.com/design/ivHDPkElFD4IhTkqQ1iVYr/Projeto-IOS?node-id=1-4223&p=f&t=8I0vez4AnafAvfhJ-0)
 
-### Video demonstrando navegação
+### 📱 Fluxo de Navegação
 [Assista à demonstração em vídeo](video/Gravação%20de%20Tela%202026-06-25%20às%2018.07.27.mov)
 
 
